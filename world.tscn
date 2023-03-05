@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://bod8tbv6ia62i"]
+
+[ext_resource type="Material" uid="uid://8pkiryu5peyg" path="res://world/placeholder_assets/mat_desk.tres" id="1_efujp"]
+[ext_resource type="PackedScene" uid="uid://cdujmg8c2lu2o" path="res://player/player.tscn" id="2_pkffg"]
+[ext_resource type="PackedScene" uid="uid://dh4d3sr4im0l7" path="res://interact/paper.tscn" id="3_r2dj3"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_io5jw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6pi6w"]
+
+[sub_resource type="Environment" id="Environment_4mwwc"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+
+[node name="World" type="Node"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.85, 0, 0, 0, 1, 0, 0, 0, 6.85, 0, 0, 0)
+mesh = SubResource("PlaneMesh_io5jw")
+
+[node name="Desk_L" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.500361, 0, 0, 0, 0.604884, 0, 0, 0, 2.06428, -3.84059, 0.295804, 0)
+mesh = SubResource("BoxMesh_6pi6w")
+surface_material_override/0 = ExtResource("1_efujp")
+
+[node name="Desk_R" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.500361, 0, 0, 0, 0.604884, 0, 0, 0, 2.06428, 3.841, 0.296, 0)
+mesh = SubResource("BoxMesh_6pi6w")
+surface_material_override/0 = ExtResource("1_efujp")
+
+[node name="Desk_Judge" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.18715e-08, 0, 2.06428, 0, 0.848315, 0, -0.500361, 0, -9.02327e-08, 0, 0.296, 3.84387)
+mesh = SubResource("BoxMesh_6pi6w")
+surface_material_override/0 = ExtResource("1_efujp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.897266, 0.44149, 0, -0.44149, -0.897266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4mwwc")
+
+[node name="Player" parent="." instance=ExtResource("2_pkffg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.867834, 4.751)
+
+[node name="Paper" parent="." instance=ExtResource("3_r2dj3")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.598725, 0.744152, 3.84387)

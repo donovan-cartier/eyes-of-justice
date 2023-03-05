@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0wm5d45nbf44"]
+
+[ext_resource type="Script" path="res://interact/RaycastBehavior.gd" id="1_5og2y"]
+
+[node name="RaycastBehavior" type="Node3D"]
+script = ExtResource("1_5og2y")

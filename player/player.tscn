@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdujmg8c2lu2o"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_lgrip"]
+[ext_resource type="Script" path="res://player/Camera.gd" id="2_ifxyo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l8hrq"]
+radius = 0.3
+height = 1.6
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_lgrip")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_l8hrq")
+
+[node name="CameraRoot" type="Node3D" parent="."]
+script = ExtResource("2_ifxyo")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286081, 0)
+current = true
+
+[node name="InteractRaycast" type="RayCast3D" parent="CameraRoot/Camera3D" groups=["interact_raycast"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+target_position = Vector3(0, -2, 0)
+collide_with_areas = true
+
+[node name="ObjectLookPoint" type="Node3D" parent="CameraRoot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00633767, -0.346934)
