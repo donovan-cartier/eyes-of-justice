@@ -19,7 +19,7 @@ next_pass = SubResource("ShaderMaterial_vnx32")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ar48q"]
 size = Vector3(0.2, 0.01, 0.3)
 
-[node name="Paper" type="Area3D"]
+[node name="Paper" type="Area3D" groups=["interact"]]
 script = ExtResource("1_qg5og")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

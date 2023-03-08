@@ -1,11 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdujmg8c2lu2o"]
+[gd_scene load_steps=8 format=3 uid="uid://cdujmg8c2lu2o"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_lgrip"]
 [ext_resource type="Script" path="res://player/Camera.gd" id="2_ifxyo"]
+[ext_resource type="PackedScene" uid="uid://cbf81rkr4g3ih" path="res://dialogues/DialogueBox.tscn" id="3_w2ixp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l8hrq"]
 radius = 0.3
 height = 1.6
+
+[sub_resource type="Animation" id="Animation_c4rnw"]
+resource_name = "head_bob"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.274605, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.286081, 0), Vector3(0, 0.32, 0), Vector3(0, 0.286081, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_du2qi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.286081, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53rwu"]
+_data = {
+"RESET": SubResource("Animation_du2qi"),
+"head_bob": SubResource("Animation_c4rnw")
+}
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_lgrip")
@@ -28,3 +66,10 @@ collide_with_areas = true
 
 [node name="ObjectLookPoint" type="Node3D" parent="CameraRoot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00633767, -0.346934)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraRoot/Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_53rwu")
+}
+
+[node name="DialogueBox" parent="." instance=ExtResource("3_w2ixp")]

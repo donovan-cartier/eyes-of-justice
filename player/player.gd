@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 2
+const JUMP_VELOCITY = 3
 
 var can_move_body = false
 
@@ -15,6 +15,7 @@ var aimed_object
 var inspected_object
 
 @onready var camera = $CameraRoot
+@onready var camera_anim = $CameraRoot/Camera3D/AnimationPlayer
 
 #Player movement modes
 enum MODES {
@@ -24,13 +25,19 @@ enum MODES {
 	MOVE_NOT_ALLOWED
 }
 
-var current_mode = MODES.CAMERA_ONLY
+var current_mode = MODES.FULL_MOVEMENT
+var previous_mode
+
+func _ready():
+	pass
+#start dialogue box (debug)
+#	$DialogueBox.start(load("res://dialogues/test.dialogue"), "this_is_a_node_title")
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("pause"):
 		get_tree().quit()
 	
-	if can_move_body:
+	if current_mode == MODES.FULL_MOVEMENT:
 		# Add the gravity.
 		if not is_on_floor():
 			velocity.y -= gravity * delta
@@ -46,6 +53,7 @@ func _physics_process(delta):
 		if direction:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
+			camera_anim.play("head_bob")
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -55,27 +63,37 @@ func _physics_process(delta):
 	#Check raycast collision for objects
 	if interact_raycast.is_colliding() && current_mode != MODES.INSPECT:
 		aimed_object = interact_raycast.get_collider()
-		aimed_object.get_node("RaycastBehavior").highlight()
+		if aimed_object.is_in_group("interact"):
+			aimed_object.get_node("RaycastBehavior").highlight()
 	#If no interactable objects, reset aimed_object var
 	else:
 		if aimed_object != null:
-			aimed_object.get_node("RaycastBehavior").stop_highlight()
-			aimed_object = null
+			if aimed_object.is_in_group("interact"):
+				aimed_object.get_node("RaycastBehavior").stop_highlight()
+				aimed_object = null
 
 func _process(delta):
 	#On action (LMB) pressed
 	if Input.is_action_just_pressed("action"):
-		#If player is currently inspecting an object
+		#If player is currently inspecting an object, stop
 		if current_mode == MODES.INSPECT:
 			inspected_object.get_node("RaycastBehavior").stop_inspect()
-			current_mode = MODES.CAMERA_ONLY
+			current_mode = previous_mode
 			
 		#Else, if an object is aimed at, interact with it
 		elif aimed_object != null:
-			aimed_object.get_node("RaycastBehavior").interact()
+			if aimed_object.is_in_group("interact"):
+				aimed_object.get_node("RaycastBehavior").interact()
 
 #START OBJECT INSPECTION
 func inspect_object(object):
 	camera.disable_movement()
 	inspected_object = object
+	previous_mode = current_mode
 	current_mode = MODES.INSPECT
+	
+	
+func _input(event):
+#skip to next dialogue line (debug)
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
+		$DialogueBox._on_balloon_gui_input(event)
