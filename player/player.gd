@@ -25,7 +25,7 @@ enum MODES {
 	MOVE_NOT_ALLOWED
 }
 
-var current_mode = MODES.FULL_MOVEMENT
+@export var current_mode = MODES.CAMERA_ONLY
 var previous_mode
 
 func _ready():

@@ -1,0 +1,105 @@
+[gd_scene load_steps=4 format=3 uid="uid://bih3qh1xfg8ax"]
+
+[ext_resource type="Script" path="res://ui/Icon_handler.gd" id="1_h5o53"]
+[ext_resource type="Script" path="res://ui/Chopshop.gd" id="1_ki7yq"]
+[ext_resource type="Texture2D" uid="uid://r4o88xkurx08" path="res://icon.svg" id="1_ltywp"]
+
+[node name="PC_Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wallpaper" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.388235, 0.678431, 0.796078, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 135.0
+offset_bottom = 115.0
+
+[node name="IconsContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Chopshop" type="VBoxContainer" parent="MarginContainer/IconsContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("1_h5o53")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/IconsContainer/Chopshop"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = ExtResource("1_ltywp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/IconsContainer/Chopshop"]
+layout_mode = 2
+text = "Chopshop
+"
+horizontal_alignment = 1
+
+[node name="ChopshopWindow" type="Window" parent="."]
+title = "Chopshop"
+position = Vector2i(80, 40)
+size = Vector2i(853, 480)
+script = ExtResource("1_ki7yq")
+
+[node name="NewFile" type="Button" parent="ChopshopWindow"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -27.0
+offset_right = 70.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "+
+Nouveau fichier"
+
+[node name="Screen" type="Control" parent="ChopshopWindow"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ImageShopped" type="TextureRect" parent="ChopshopWindow/Screen"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 450.0
+texture = ExtResource("1_ltywp")
+
+[node name="Tools" type="VBoxContainer" parent="ChopshopWindow/Screen"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ChopshopWindow/Screen/Tools"]
+layout_mode = 2
+texture = ExtResource("1_ltywp")
+
+[connection signal="gui_input" from="MarginContainer/IconsContainer/Chopshop" to="MarginContainer/IconsContainer/Chopshop" method="_on_gui_input"]
+[connection signal="mouse_entered" from="MarginContainer/IconsContainer/Chopshop" to="MarginContainer/IconsContainer/Chopshop" method="_on_mouse_entered"]
+[connection signal="close_requested" from="ChopshopWindow" to="ChopshopWindow" method="_on_close_requested"]
+[connection signal="pressed" from="ChopshopWindow/NewFile" to="ChopshopWindow" method="_on_new_file_pressed"]

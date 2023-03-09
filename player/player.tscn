@@ -1,12 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdujmg8c2lu2o"]
+[gd_scene load_steps=10 format=3 uid="uid://cdujmg8c2lu2o"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_lgrip"]
 [ext_resource type="Script" path="res://player/Camera.gd" id="2_ifxyo"]
 [ext_resource type="PackedScene" uid="uid://cbf81rkr4g3ih" path="res://dialogues/DialogueBox.tscn" id="3_w2ixp"]
+[ext_resource type="Shader" path="res://shaders/bg_blur.gdshader" id="4_bw8rq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l8hrq"]
 radius = 0.3
 height = 1.6
+
+[sub_resource type="Animation" id="Animation_du2qi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.286081, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_c4rnw"]
 resource_name = "head_bob"
@@ -24,26 +40,15 @@ tracks/0/keys = {
 "values": [Vector3(0, 0.286081, 0), Vector3(0, 0.32, 0), Vector3(0, 0.286081, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_du2qi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.286081, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_53rwu"]
 _data = {
 "RESET": SubResource("Animation_du2qi"),
 "head_bob": SubResource("Animation_c4rnw")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r702v"]
+shader = ExtResource("4_bw8rq")
+shader_parameter/amount = 0.0
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_lgrip")
@@ -73,3 +78,11 @@ libraries = {
 }
 
 [node name="DialogueBox" parent="." instance=ExtResource("3_w2ixp")]
+
+[node name="BlurShader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_r702v")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

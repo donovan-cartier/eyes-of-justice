@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2dx0mryqulv8"]
+
+[ext_resource type="PackedScene" uid="uid://cdujmg8c2lu2o" path="res://player/player.tscn" id="1_waoxq"]
+[ext_resource type="PackedScene" uid="uid://d0utus6udet01" path="res://interact/pc.tscn" id="2_tfsks"]
+
+[sub_resource type="Environment" id="Environment_ojjqc"]
+background_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_igc6a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a60e5"]
+size = Vector3(13.7047, 0.001, 13.6949)
+
+[node name="World" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ojjqc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(6.85, 0, 0, 0, 1, 0, 0, 0, 6.85, 0, 0, 0)
+mesh = SubResource("PlaneMesh_igc6a")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_a60e5")
+
+[node name="Player" parent="." instance=ExtResource("1_waoxq")]
+current_mode = 0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.941741, 0.336339, 0, -0.336339, 0.941741, 0, 0.776859, 0)
+visible = false
+light_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.00181, 0)
+spot_range = 10.8969
+spot_attenuation = 0.965936
+spot_angle = 59.4711
+spot_angle_attenuation = 0.0525561
+
+[node name="PC" parent="." instance=ExtResource("2_tfsks")]

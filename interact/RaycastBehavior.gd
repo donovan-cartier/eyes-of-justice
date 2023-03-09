@@ -31,8 +31,14 @@ func stop_highlight():
 func interact():
 	print('interact')
 	stop_highlight()
-	#Inspect object (default behavior, will change)
-	inspect()
+	
+	#Inspect object in 3D if has tag freelook
+	if parent.is_in_group("freelook"):
+		inspect()
+	else:
+		match parent.name:
+			"PC":
+				parent.start_pc()
 #	print(parent.global_transform.looking_at(player_object_anchor_pos).basis)
 #	parent.global_transform.looking_at(player_object_anchor_pos).origin
 	

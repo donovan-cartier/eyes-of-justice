@@ -7,19 +7,19 @@
 [sub_resource type="BoxMesh" id="BoxMesh_y5r7b"]
 size = Vector3(0.2, 0.01, 0.3)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnx32"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sec1v"]
 render_priority = 0
 shader = ExtResource("2_gccfh")
 shader_parameter/outline_color = Color(0.862745, 0.243137, 0.192157, 1)
 shader_parameter/outline_width = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3l68"]
-next_pass = SubResource("ShaderMaterial_vnx32")
+next_pass = SubResource("ShaderMaterial_sec1v")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ar48q"]
 size = Vector3(0.2, 0.01, 0.3)
 
-[node name="Paper" type="Area3D" groups=["interact"]]
+[node name="Paper" type="Area3D" groups=["freelook", "interact"]]
 script = ExtResource("1_qg5og")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
