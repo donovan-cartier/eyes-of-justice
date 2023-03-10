@@ -1,17 +1,17 @@
-extends Window
+extends Control
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hide()
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func _on_close_requested():
-	hide()
 
-func _on_new_file_pressed():
-	$Screen.show()
+func _on_disconnect_button_pressed():
+	hide()
+	$ChopshopWindow.hide()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
