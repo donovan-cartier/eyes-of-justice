@@ -13,7 +13,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func start_pc():
+func interact():
 	if !pc_started:
 		pc_instance = pc_screen.instantiate()
 		get_tree().get_root().get_node("World").add_child(pc_instance)

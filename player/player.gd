@@ -89,11 +89,14 @@ func _process(delta):
 func inspect_object(object):
 	camera.disable_movement()
 	inspected_object = object
-	previous_mode = current_mode
-	current_mode = MODES.INSPECT
+	set_movement_mode(MODES.INSPECT)
 	
 	
 func _input(event):
 #skip to next dialogue line (debug)
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		$DialogueBox._on_balloon_gui_input(event)
+
+func set_movement_mode(new_mode: MODES):
+	previous_mode = current_mode
+	current_mode = new_mode

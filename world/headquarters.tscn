@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2dx0mryqulv8"]
+[gd_scene load_steps=10 format=3 uid="uid://d2dx0mryqulv8"]
 
 [ext_resource type="PackedScene" uid="uid://cdujmg8c2lu2o" path="res://player/player.tscn" id="1_waoxq"]
 [ext_resource type="PackedScene" uid="uid://d0utus6udet01" path="res://interact/pc.tscn" id="2_tfsks"]
+[ext_resource type="PackedScene" uid="uid://dyru81ic0ws7h" path="res://interact/dna_desk.tscn" id="3_31vk8"]
+[ext_resource type="PackedScene" uid="uid://2k40x86yqm4k" path="res://interact/openable_box.tscn" id="4_qpw1j"]
+[ext_resource type="PackedScene" uid="uid://dh4d3sr4im0l7" path="res://interact/paper.tscn" id="5_jl42p"]
+[ext_resource type="PackedScene" uid="uid://dnp30blufk1vg" path="res://interact/pickup_test.tscn" id="6_dqyun"]
 
 [sub_resource type="Environment" id="Environment_ojjqc"]
 background_mode = 1
@@ -26,9 +30,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_a60e5")
 
-[node name="Player" parent="." instance=ExtResource("1_waoxq")]
-current_mode = 0
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.941741, 0.336339, 0, -0.336339, 0.941741, 0, 0.776859, 0)
 visible = false
@@ -42,3 +43,18 @@ spot_angle = 59.4711
 spot_angle_attenuation = 0.0525561
 
 [node name="PC" parent="." instance=ExtResource("2_tfsks")]
+
+[node name="DNADesk" parent="." instance=ExtResource("3_31vk8")]
+
+[node name="Player" parent="." instance=ExtResource("1_waoxq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.695122, 0)
+current_mode = 0
+
+[node name="Openable_Box" parent="." instance=ExtResource("4_qpw1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23102, 0, 0)
+
+[node name="Paper" parent="." instance=ExtResource("5_jl42p")]
+transform = Transform3D(1, 0, 0, 0, -0.144512, -0.989503, 0, 0.989503, -0.144512, 1.15936, 0.0660551, 0.079471)
+
+[node name="pickup_test" parent="." instance=ExtResource("6_dqyun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43676, 0.0754977, -0.0287901)

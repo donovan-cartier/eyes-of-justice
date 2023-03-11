@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://2k40x86yqm4k"]
+
+[ext_resource type="PackedScene" uid="uid://c0wm5d45nbf44" path="res://interact/raycast_behavior.tscn" id="1_rprm3"]
+[ext_resource type="Script" path="res://interact/openable_box.gd" id="1_ve1v1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hy4vs"]
+size = Vector3(0.8, 0.03, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yx6p1"]
+size = Vector3(0.5, 0.03, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_edsia"]
+size = Vector3(0.5, 0.03, 0.85)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ce34"]
+size = Vector3(0.0268452, 0.473075, 1.04391)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pimq5"]
+size = Vector3(0.0268452, 0.473075, 0.809337)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nfaos"]
+size = Vector3(0.0268452, 0.862725, 1.05693)
+
+[sub_resource type="Animation" id="Animation_pksjt"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D6:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.498244, 0), Vector3(0, 0.471778, 0.616455), Vector3(0, 0.256405, 0.924683)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D6:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 1.5708), Vector3(0.579781, 0, 1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_txwl0"]
+_data = {
+"open": SubResource("Animation_pksjt")
+}
+
+[node name="Openable_Box" type="StaticBody3D" groups=["interact"]]
+script = ExtResource("1_ve1v1")
+
+[node name="Box_Bottom" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hy4vs")
+
+[node name="Box_Left" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.415112, 0.235071, 0)
+mesh = SubResource("BoxMesh_yx6p1")
+
+[node name="Box_Right" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.415, 0.235, 0)
+mesh = SubResource("BoxMesh_yx6p1")
+
+[node name="Box_Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 0.235, -0.513492)
+mesh = SubResource("BoxMesh_edsia")
+
+[node name="Box_Front" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 0.235, 0.513)
+mesh = SubResource("BoxMesh_edsia")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.409404, 0.224619, 0)
+shape = SubResource("BoxShape3D_2ce34")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.416829, 0.224619, 0)
+shape = SubResource("BoxShape3D_2ce34")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0299097, 0.224619, -0.511697)
+shape = SubResource("BoxShape3D_pimq5")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0299097, 0.224619, 0.508186)
+shape = SubResource("BoxShape3D_pimq5")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_nfaos")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.498244, 0)
+shape = SubResource("BoxShape3D_nfaos")
+
+[node name="Box_Top" type="MeshInstance3D" parent="CollisionShape3D6"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.00492984, -2.1549e-10, 0)
+mesh = SubResource("BoxMesh_hy4vs")
+skeleton = NodePath("../..")
+
+[node name="RaycastBehavior" parent="." instance=ExtResource("1_rprm3")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_txwl0")
+}
