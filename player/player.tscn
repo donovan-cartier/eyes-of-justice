@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdujmg8c2lu2o"]
+[gd_scene load_steps=12 format=3 uid="uid://cdujmg8c2lu2o"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_lgrip"]
 [ext_resource type="Script" path="res://player/Camera.gd" id="2_ifxyo"]
 [ext_resource type="PackedScene" uid="uid://cbf81rkr4g3ih" path="res://dialogues/DialogueBox.tscn" id="3_w2ixp"]
 [ext_resource type="Shader" path="res://shaders/bg_blur.gdshader" id="4_bw8rq"]
 [ext_resource type="PackedScene" uid="uid://cuvkm7j8kyoci" path="res://player/inventory.tscn" id="5_b2lfx"]
+[ext_resource type="PackedScene" uid="uid://cjyuqxeundojw" path="res://ui/player_hud.tscn" id="6_bmo70"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l8hrq"]
 radius = 0.3
@@ -90,3 +91,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Inventory" parent="." instance=ExtResource("5_b2lfx")]
+
+[node name="Player_HUD" parent="." instance=ExtResource("6_bmo70")]

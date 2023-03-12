@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dnp30blufk1vg"]
 
-[ext_resource type="Script" path="res://interact/paper.gd" id="1_ssaqh"]
+[ext_resource type="Script" path="res://interact/pickup.gd" id="1_xbp1m"]
 [ext_resource type="Shader" path="res://shaders/outline.gdshader" id="2_00ax6"]
 [ext_resource type="PackedScene" uid="uid://c0wm5d45nbf44" path="res://interact/raycast_behavior.tscn" id="3_r0ltf"]
 
@@ -19,8 +19,8 @@ next_pass = SubResource("ShaderMaterial_sec1v")
 [sub_resource type="BoxShape3D" id="BoxShape3D_6l7ud"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="pickup_test" type="Area3D" groups=["interact", "pickup"]]
-script = ExtResource("1_ssaqh")
+[node name="Pickup" type="Area3D" groups=["interact", "pickup"]]
+script = ExtResource("1_xbp1m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

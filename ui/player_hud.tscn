@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjyuqxeundojw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qrdlf"]
+font_size = 19
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.145098)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6dpmv"]
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.145098)
+
+[node name="Player_HUD" type="Control"]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Missions" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -397.0
+offset_top = 16.0
+offset_right = -9.0
+offset_bottom = 78.0
+grow_horizontal = 0
+theme_override_constants/separation = -6
+alignment = 2
+
+[node name="MissionTitle" type="Label" parent="Missions"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Mission Title"
+label_settings = SubResource("LabelSettings_qrdlf")
+horizontal_alignment = 2
+
+[node name="MissionObjective" type="Label" parent="Missions"]
+layout_mode = 2
+text = "Mission Objective"
+label_settings = SubResource("LabelSettings_6dpmv")
+horizontal_alignment = 2
