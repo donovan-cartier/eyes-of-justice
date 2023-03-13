@@ -5,13 +5,18 @@
 				"missions":[
 					{
 						"id": 0,
-						"mission_title": "Trafiquer l'ADN",
+						"mission_title": "Trafiquer l'arme",
 						"mission_objective": "Allez chercher l'arme du crime."
 					},
 					{
 						"id": 1,
-						"mission_title": "Trafiquer l'ADN",
+						"mission_title": "Trafiquer l'arme",
 						"mission_objective": "Utilisez le bureau pour déposer l'arme."
+					},
+					{
+						"id": 2,
+						"mission_title": "Trafiquer l'arme",
+						"mission_objective": "Utilisez la pipette de sang pour tâcher la lame."
 					}
 				]
 			},

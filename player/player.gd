@@ -95,7 +95,8 @@ func inspect_object(object):
 func _input(event):
 #skip to next dialogue line (debug)
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
-		$DialogueBox._on_balloon_gui_input(event)
+#		$DialogueBox._on_balloon_gui_input(event)
+		pass
 
 func set_movement_mode(new_mode: MODES):
 	previous_mode = current_mode

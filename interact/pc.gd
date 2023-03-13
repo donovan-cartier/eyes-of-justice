@@ -8,11 +8,6 @@ var pc_instance
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func interact():
 	if !pc_started:
 		pc_instance = pc_screen.instantiate()

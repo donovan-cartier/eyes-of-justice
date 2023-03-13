@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyru81ic0ws7h"]
+[gd_scene load_steps=11 format=3 uid="uid://dyru81ic0ws7h"]
 
 [ext_resource type="Shader" path="res://shaders/outline.gdshader" id="1_3qr8i"]
 [ext_resource type="Script" path="res://interact/dna_desk.gd" id="1_syr0t"]
 [ext_resource type="PackedScene" uid="uid://c0wm5d45nbf44" path="res://interact/raycast_behavior.tscn" id="2_dq4n0"]
+[ext_resource type="Script" path="res://ui/DeskInterface.gd" id="4_twn8s"]
+[ext_resource type="PackedScene" uid="uid://breodm53cgtnb" path="res://interact/blood_pipette.tscn" id="5_p5hqk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_n5xhq"]
 size = Vector3(1.3, 0.7, 0.6)
@@ -18,6 +20,9 @@ next_pass = SubResource("ShaderMaterial_vnx32")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dh1cy"]
 size = Vector3(1.29313, 0.602821, 0.697075)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4kc68"]
+size = Vector3(0.7, 0.1, 0.1)
 
 [node name="DNADesk" type="StaticBody3D" groups=["dna_desk", "interact"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.18322, 0.352115, -1.78556)
@@ -36,3 +41,51 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 
 [node name="CameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258364, 0.966048, 0, -0.966048, 0.258364, 0, 0.92763, 0.500838)
+
+[node name="EvidenceMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.193475, 0.399171, 0)
+visible = false
+mesh = SubResource("BoxMesh_4kc68")
+
+[node name="BloodPipette" parent="." instance=ExtResource("5_p5hqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.540189, 0.431885, -0.194206)
+
+[node name="DeskInterface" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_twn8s")
+
+[node name="PlaceItem" type="Button" parent="DeskInterface"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -182.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+disabled = true
+text = "Placer l'arme du crime"
+
+[node name="Return" type="Button" parent="DeskInterface"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 61.0
+grow_vertical = 0
+text = "Retour"
+
+[connection signal="input_event" from="BloodPipette" to="BloodPipette" method="_on_input_event"]
+[connection signal="mouse_exited" from="BloodPipette" to="BloodPipette" method="_on_mouse_exited"]
+[connection signal="pressed" from="DeskInterface/PlaceItem" to="." method="_on_place_item_pressed"]
+[connection signal="pressed" from="DeskInterface/Return" to="DeskInterface" method="_on_return_pressed"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://breodm53cgtnb"]
+
+[ext_resource type="Script" path="res://interact/blood_pipette.gd" id="1_4s65f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0umh4"]
+size = Vector3(0.03, 0.15, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sg6y7"]
+size = Vector3(0.03, 0.15, 0.03)
+
+[node name="BloodPipette" type="Area3D"]
+script = ExtResource("1_4s65f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0umh4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_sg6y7")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

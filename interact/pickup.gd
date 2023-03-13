@@ -1,14 +1,9 @@
 extends Area3D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	match MissionManager.current_chapter:
-		"chapter_1":
-			print("hi")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+func _exit_tree():
+	match name:
+		"CrimeEvidence_Sword":
+			if MissionManager.current_chapter == "chapter_1" && MissionManager.current_mission.id == 0:
+				MissionManager.set_current_mission_to_next()
+		

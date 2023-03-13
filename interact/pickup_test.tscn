@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0wm5d45nbf44" path="res://interact/raycast_behavior.tscn" id="3_r0ltf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jf7fs"]
-size = Vector3(0.1, 0.1, 0.1)
+size = Vector3(0.7, 0.1, 0.1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sec1v"]
 render_priority = 0
@@ -17,9 +17,9 @@ shader_parameter/outline_width = 0.0
 next_pass = SubResource("ShaderMaterial_sec1v")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6l7ud"]
-size = Vector3(0.1, 0.1, 0.1)
+size = Vector3(0.7, 0.1, 0.1)
 
-[node name="Pickup" type="Area3D" groups=["interact", "pickup"]]
+[node name="CrimeEvidence_Sword" type="Area3D" groups=["interact", "pickup"]]
 script = ExtResource("1_xbp1m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

@@ -14,8 +14,8 @@ var current_mission
 
 func _ready():
 	load_mission_list_by_chapter("chapter_1")
-	print(mission_list)
 	set_current_mission_by_id(0)
+	print(current_mission)
 
 func load_mission_list_by_chapter(chapter_name: String):
 	var file = FileAccess.open(mission_list_path, FileAccess.READ)
