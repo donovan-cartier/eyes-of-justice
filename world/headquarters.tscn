@@ -50,6 +50,7 @@ current_mode = 0
 
 [node name="DNADesk" parent="." instance=ExtResource("3_31vk8")]
 item_to_place = "CrimeEvidence_Sword"
+required_drops = 3
 
 [node name="Openable_Box" parent="." instance=ExtResource("4_qpw1j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23102, 0, 0)

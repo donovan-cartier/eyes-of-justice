@@ -83,7 +83,7 @@ offset_right = 61.0
 grow_vertical = 0
 text = "Retour"
 
-[node name="Evidence" type="StaticBody3D" parent="."]
+[node name="Evidence" type="StaticBody3D" parent="." groups=["desk_evidence"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.193475, 0.399171, 0)
 visible = false
 

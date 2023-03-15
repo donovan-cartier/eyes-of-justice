@@ -9,14 +9,8 @@ extends StaticBody3D
 var saved_camera_location : Vector3
 var saved_camera_rotation : Vector3
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+var blood_drops := 0
+@export var required_drops : int
 
 func interact():
 	#Stop player movement
@@ -50,3 +44,8 @@ func _on_place_item_pressed():
 	$Evidence.show()
 	if MissionManager.current_chapter == "chapter_1" && MissionManager.current_mission.id == 1:
 		MissionManager.set_current_mission_to_next()
+
+func add_blood_drop():
+	blood_drops += 1
+	if blood_drops == required_drops:
+		print('gg')
