@@ -47,6 +47,6 @@ func stop_interact():
 
 #"Place" evidence item (will have to change mesh according to evidence mesh)
 func _on_place_item_pressed():
-	$EvidenceMesh.show()
+	$Evidence.show()
 	if MissionManager.current_chapter == "chapter_1" && MissionManager.current_mission.id == 1:
 		MissionManager.set_current_mission_to_next()

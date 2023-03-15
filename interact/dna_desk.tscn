@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyru81ic0ws7h"]
+[gd_scene load_steps=12 format=3 uid="uid://dyru81ic0ws7h"]
 
 [ext_resource type="Shader" path="res://shaders/outline.gdshader" id="1_3qr8i"]
 [ext_resource type="Script" path="res://interact/dna_desk.gd" id="1_syr0t"]
@@ -24,6 +24,9 @@ size = Vector3(1.29313, 0.602821, 0.697075)
 [sub_resource type="BoxMesh" id="BoxMesh_4kc68"]
 size = Vector3(0.7, 0.1, 0.1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wh6ej"]
+size = Vector3(0.7, 0.1, 0.1)
+
 [node name="DNADesk" type="StaticBody3D" groups=["dna_desk", "interact"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.18322, 0.352115, -1.78556)
 script = ExtResource("1_syr0t")
@@ -41,11 +44,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 
 [node name="CameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258364, 0.966048, 0, -0.966048, 0.258364, 0, 0.92763, 0.500838)
-
-[node name="EvidenceMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.193475, 0.399171, 0)
-visible = false
-mesh = SubResource("BoxMesh_4kc68")
 
 [node name="BloodPipette" parent="." instance=ExtResource("5_p5hqk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.540189, 0.431885, -0.194206)
@@ -84,6 +82,17 @@ offset_top = -31.0
 offset_right = 61.0
 grow_vertical = 0
 text = "Retour"
+
+[node name="Evidence" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.193475, 0.399171, 0)
+visible = false
+
+[node name="EvidenceMesh" type="MeshInstance3D" parent="Evidence"]
+mesh = SubResource("BoxMesh_4kc68")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Evidence"]
+shape = SubResource("BoxShape3D_wh6ej")
 
 [connection signal="input_event" from="BloodPipette" to="BloodPipette" method="_on_input_event"]
 [connection signal="mouse_exited" from="BloodPipette" to="BloodPipette" method="_on_mouse_exited"]

@@ -17,4 +17,7 @@ mesh = SubResource("BoxMesh_0umh4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_sg6y7")
 
+[node name="DropSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0872008, 0)
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

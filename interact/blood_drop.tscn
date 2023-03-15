@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://chdx3th32imeo"]
+
+[ext_resource type="Script" path="res://interact/blood_drop.gd" id="1_43oe1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8ill"]
+albedo_color = Color(0.521569, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m86qd"]
+material = SubResource("StandardMaterial3D_f8ill")
+size = Vector3(0.03, 0.03, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dc1av"]
+size = Vector3(0.03, 0.03, 0.03)
+
+[node name="BloodDrop" type="Area3D"]
+script = ExtResource("1_43oe1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_m86qd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_dc1av")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
