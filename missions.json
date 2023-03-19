@@ -17,6 +17,11 @@
 						"id": 2,
 						"mission_title": "Trafiquer l'arme",
 						"mission_objective": "Utilisez la pipette de sang pour tâcher la lame."
+					},
+					{
+						"id": 3,
+						"mission_title": "Envoyer l'arme du crime",
+						"mission_objective": "Envoyez la fausse arme pour le procès."
 					}
 				]
 			},
@@ -25,8 +30,8 @@
 				"missions":[
 					{
 						"id": 0,
-						"mission_title": "Chap2",
-						"mission_objective": "1."
+						"mission_title": "Procès",
+						"mission_objective": "Tournez le procès en faveur de la preuve falsifiée."
 					},
 					{
 						"id": 1,

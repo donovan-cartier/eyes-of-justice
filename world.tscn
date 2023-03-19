@@ -74,11 +74,11 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4mwwc")
 
-[node name="Player" parent="." instance=ExtResource("2_pkffg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656218, 4.751)
-
 [node name="Paper" parent="." instance=ExtResource("3_r2dj3")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.598725, 0.744152, 3.84387)
+
+[node name="Player" parent="." instance=ExtResource("2_pkffg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656218, 4.751)
 
 [node name="CutsceneManager" type="AnimationPlayer" parent="."]
 libraries = {

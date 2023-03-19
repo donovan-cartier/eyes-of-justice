@@ -4,7 +4,7 @@ var has_focus := false
 var is_held := false
 @onready var camera = get_tree().get_nodes_in_group("player")[0].get_node("CameraRoot/Camera3D")
 
-@onready var default_y_pos = global_position.y
+@onready var default_pos = global_position
 
 var blood_drop = preload("res://interact/blood_drop.tscn")
 
@@ -21,8 +21,9 @@ func _on_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton && event.is_pressed() && event.button_index == 1:
 #		is_held = !is_held
 		is_held = true
-		if !is_held:
-			global_position.y = default_y_pos
+	elif event is InputEventMouseButton && event.is_pressed() && event.button_index == 2:
+		is_held = false
+		global_position = default_pos
 
 func _process(delta):
 	if is_held:

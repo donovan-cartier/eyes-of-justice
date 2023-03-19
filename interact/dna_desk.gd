@@ -41,11 +41,21 @@ func stop_interact():
 
 #"Place" evidence item (will have to change mesh according to evidence mesh)
 func _on_place_item_pressed():
-	$Evidence.show()
-	if MissionManager.current_chapter == "chapter_1" && MissionManager.current_mission.id == 1:
-		MissionManager.set_current_mission_to_next()
+	if !$Evidence.visible:
+		$DeskInterface/PlaceItem.text = "Retirer l'arme du crime"
+		$Evidence.show()
+		player.get_node('Inventory').remove_item("CrimeEvidence_Sword")
+		if MissionManager.current_chapter == "chapter_1" && MissionManager.current_mission.id == 1:
+			MissionManager.set_current_mission_to_next()
+	else:
+		$DeskInterface/PlaceItem.text = "Placer l'arme du crime"
+		$Evidence.hide()
+		player.get_node('Inventory').add_item("CrimeEvidence_Sword")
+		if MissionManager.current_chapter == "chapter_1" && MissionManager.current_mission.id == 3:
+			MissionManager.call_mission()
 
 func add_blood_drop():
 	blood_drops += 1
 	if blood_drops == required_drops:
-		print('gg')
+		if MissionManager.current_chapter == "chapter_1" && MissionManager.current_mission.id == 2:
+			MissionManager.set_current_mission_to_next()
