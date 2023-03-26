@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="EyesOfJusticeRemake"
-run/main_scene="res://world/headquarters.tscn"
+run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 CutsceneManager="*res://cutscenes/CutsceneManager.gd"
 MissionManager="*res://MissionManager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dialogue_manager]
 
@@ -77,4 +77,4 @@ action={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/test.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/test.dialogue", "res://dialogues/texts/testdialogue.dialogue")

@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name Player
 
 const SPEED = 2
 const JUMP_VELOCITY = 3
@@ -16,6 +16,7 @@ var inspected_object
 
 @onready var camera = $CameraRoot
 @onready var camera_anim = $CameraRoot/Camera3D/AnimationPlayer
+
 
 #Player movement modes
 enum MODES {
