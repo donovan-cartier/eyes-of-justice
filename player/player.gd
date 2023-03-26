@@ -15,6 +15,7 @@ var aimed_object
 var inspected_object
 
 @onready var camera = $CameraRoot
+@onready var camera3D = $CameraRoot/Camera3D
 @onready var camera_anim = $CameraRoot/Camera3D/AnimationPlayer
 
 
@@ -99,6 +100,16 @@ func _input(event):
 #		$DialogueBox._on_balloon_gui_input(event)
 		pass
 
-func set_movement_mode(new_mode: MODES):
+func set_movement_mode(new_mode: MODES, mouse_mode := Input.MOUSE_MODE_CAPTURED):
 	previous_mode = current_mode
 	current_mode = new_mode
+	Input.mouse_mode = mouse_mode
+
+func look_at_object(object_path: String):
+	var object = get_tree().get_root().get_node(object_path)
+	var target_position = object.global_position
+	var tween = get_tree().create_tween()
+#	tween.tween_property(camera3D,"rotation_degrees", Vector3(0,-5,0),1)
+#	tween.tween_method(camera3D.look_at.bind(Vector3.UP), camera3D.global_transform.origin, Vector3(0,1,0), 1)
+	tween.set_ease(Tween.EASE_IN)
+	tween.play()

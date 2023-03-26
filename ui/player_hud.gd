@@ -8,5 +8,4 @@ var next_dialogue_res : DialogueResource
 func _ready():
 	next_dialogue_res = load("res://dialogues/texts/testdialogue.dialogue")
 	balloon.start(next_dialogue_res, "beginning")
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	player.set_movement_mode(player.MODES.MOVE_NOT_ALLOWED)
+	player.set_movement_mode(player.MODES.MOVE_NOT_ALLOWED, Input.MOUSE_MODE_VISIBLE)

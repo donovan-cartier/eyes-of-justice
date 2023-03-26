@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bod8tbv6ia62i"]
+[gd_scene load_steps=19 format=3 uid="uid://bod8tbv6ia62i"]
 
 [ext_resource type="Material" uid="uid://8pkiryu5peyg" path="res://world/placeholder_assets/mat_desk.tres" id="1_efujp"]
 [ext_resource type="PackedScene" uid="uid://cdujmg8c2lu2o" path="res://player/player.tscn" id="2_pkffg"]
 [ext_resource type="PackedScene" uid="uid://dh4d3sr4im0l7" path="res://interact/paper.tscn" id="3_r2dj3"]
+[ext_resource type="PackedScene" uid="uid://ccgwtyv8o8uwj" path="res://world/proto_character.tscn" id="4_tdepr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6pi6w"]
 
@@ -50,6 +51,24 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_vbveq"]
 size = Vector3(13.7047, 0.001, 13.6949)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f5ga"]
+albedo_color = Color(0.780392, 0, 0.0980392, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2aok"]
+albedo_color = Color(0.780392, 0, 0.0980392, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iurys"]
+albedo_color = Color(0.180392, 0.388235, 0.784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vupra"]
+albedo_color = Color(0.180392, 0.388235, 0.784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erk3x"]
+albedo_color = Color(0.631373, 0.631373, 0.631373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5kqn"]
+albedo_color = Color(0.631373, 0.631373, 0.631373, 1)
+
 [node name="World" type="Node"]
 
 [node name="Desk_L" type="MeshInstance3D" parent="."]
@@ -94,3 +113,34 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_vbveq")
+
+[node name="GuiltyCharacter" parent="." instance=ExtResource("4_tdepr")]
+transform = Transform3D(-0.2, 0, 1.74846e-08, 0, 0.2, 0, -1.74846e-08, 0, -0.2, 4.4291, 0, 0)
+
+[node name="Cube" parent="GuiltyCharacter/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_2f5ga")
+
+[node name="Cube001" parent="GuiltyCharacter/Armature/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_i2aok")
+
+[node name="InnocentCharacter" parent="." instance=ExtResource("4_tdepr")]
+transform = Transform3D(0.18943, 0, -0.064159, 0, 0.2, 0, 0.064159, 0, 0.18943, -4.41225, 0, -3.63586)
+
+[node name="Cube" parent="InnocentCharacter/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_iurys")
+
+[node name="Cube001" parent="InnocentCharacter/Armature/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vupra")
+
+[node name="Character" parent="." instance=ExtResource("4_tdepr")]
+transform = Transform3D(0.064159, 0, 0.18943, 0, 0.2, 0, -0.18943, 0, 0.064159, -4.41225, 0, 0.100805)
+
+[node name="Cube" parent="Character/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_erk3x")
+
+[node name="Cube001" parent="Character/Armature/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_d5kqn")
+
+[editable path="GuiltyCharacter"]
+[editable path="InnocentCharacter"]
+[editable path="Character"]

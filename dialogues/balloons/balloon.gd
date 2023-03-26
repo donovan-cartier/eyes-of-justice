@@ -46,8 +46,7 @@ var dialogue_line: DialogueLine:
 		character_label.visible = not dialogue_line.character.is_empty()
 		character_label.text = tr(dialogue_line.character, "dialogue")
 		
-#		if emotion... replace default?
-		character_portrait.texture = load("res://dialogues/portraits/%s/default.png" % [dialogue_line.character.to_lower()])
+		character_portrait.texture = load("res://dialogues/portraits/%s/%s.png" % [dialogue_line.character.to_lower(), GlobalVars.emotions[dialogue_line.character]])
 		
 		dialogue_label.modulate.a = 0
 		dialogue_label.custom_minimum_size.x = dialogue_label.get_parent().size.x - 1
