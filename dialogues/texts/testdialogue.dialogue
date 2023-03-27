@@ -9,9 +9,15 @@ do player.set_movement_mode(player.MODES.CAMERA_ONLY)
 do wait(2)
 
 do player.set_movement_mode(player.MODES.MOVE_NOT_ALLOWED, Input.MOUSE_MODE_VISIBLE)
-Zack: On a assez[do get_tree().get_root().get_node("World/GuiltyCharacter/AnimationPlayer").play("shoot")][do player.look_at_object("World/DirectionalLight3D")] attend-- [next=1]
+Zack: On a assez[do get_tree().get_root().get_node("World/GuiltyCharacter/AnimationPlayer").play("shoot")][do player.look_at_object("World/DirectionalLight3D")] attendu comme ça. La séance est -- [next=1]
 set emotions.Zack = "screaming"
 Zack : [shake rate=20 level=10]Quoi ?!!![/shake] [next=1.5]
+do player.set_movement_mode(player.MODES.FULL_MOVEMENT)
+do wait(2)
+set emotions.Zack = "angry"
 
-
+do player.set_movement_mode(player.MODES.MOVE_NOT_ALLOWED, Input.MOUSE_MODE_VISIBLE)
+Zack : (Comment il a pu amener une arme ici ?...)
+Zack : (Il doit avoir un complice !)
+do player.set_movement_mode(player.MODES.FULL_MOVEMENT)
 => END
