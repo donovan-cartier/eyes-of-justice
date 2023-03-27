@@ -108,8 +108,13 @@ func set_movement_mode(new_mode: MODES, mouse_mode := Input.MOUSE_MODE_CAPTURED)
 func look_at_object(object_path: String):
 	var object = get_tree().get_root().get_node(object_path)
 	var target_position = object.global_position
+	
+#Workaround for getting look at camera rotation
+	var old_rotation = camera3D.rotation
+	camera3D.look_at(target_position)
+	var look_at_rotation = camera3D.rotation
+	camera3D.rotation = old_rotation
+	
 	var tween = get_tree().create_tween()
-#	tween.tween_property(camera3D,"rotation_degrees", Vector3(0,-5,0),1)
-#	tween.tween_method(camera3D.look_at.bind(Vector3.UP), camera3D.global_transform.origin, Vector3(0,1,0), 1)
-	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(camera3D,"rotation", look_at_rotation, .3)
 	tween.play()

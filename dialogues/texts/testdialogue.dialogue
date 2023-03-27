@@ -6,14 +6,12 @@ set emotions.Zack = "angry"
 Zack: Ah... Bizarre.
 set emotions.Zack = "default"
 do player.set_movement_mode(player.MODES.CAMERA_ONLY)
-do get_tree().create_timer(2).timeout
+do wait(2)
 
 do player.set_movement_mode(player.MODES.MOVE_NOT_ALLOWED, Input.MOUSE_MODE_VISIBLE)
-Zack: On a assez attend-- [next=0.5]
-do get_tree().get_root().get_node("World/GuiltyCharacter/AnimationPlayer").play("shoot")
-do player.look_at_object("World/GuiltyCharacter")
+Zack: On a assez[do get_tree().get_root().get_node("World/GuiltyCharacter/AnimationPlayer").play("shoot")][do player.look_at_object("World/DirectionalLight3D")] attend-- [next=1]
 set emotions.Zack = "screaming"
 Zack : [shake rate=20 level=10]Quoi ?!!![/shake] [next=1.5]
-do player.look_at_object("World/DirectionalLight3D")
+
 
 => END
